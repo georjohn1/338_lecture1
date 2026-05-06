@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ireland Clover Gallery</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      color: #15351f;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,.65) 0 8%, transparent 9%),
+        radial-gradient(circle at 90% 10%, rgba(255,255,255,.45) 0 7%, transparent 8%),
+        linear-gradient(135deg, #e9f8df, #cdeebc 45%, #8cc96f);
+      overflow-x: hidden;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 64px 24px 36px;
+      position: relative;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "☘";
+      position: absolute;
+      font-size: 90px;
+      color: rgba(18, 105, 48, 0.16);
+      transform: rotate(-18deg);
+    }
+
+    .hero::before {
+      left: 8%;
+      top: 28px;
+    }
+
+    .hero::after {
+      right: 9%;
+      bottom: -4px;
+      transform: rotate(20deg);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: #ffffffb8;
+      border: 1px solid rgba(21, 88, 39, .18);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #276c34;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 92px);
+      line-height: .9;
+      color: #12451f;
+      text-shadow: 0 4px 0 rgba(255,255,255,.45);
+    }
+
+    .subtitle {
+      max-width: 720px;
+      margin: 22px auto 0;
+      font-size: 19px;
+      line-height: 1.6;
+      color: #2f5136;
+    }
+
+    .gallery-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 24px 74px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      gap: 30px;
+      align-items: center;
+    }
+
+    .card {
+      position: relative;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(20, 82, 35, .16);
+      border-radius: 34px;
+      padding: 22px;
+      box-shadow: 0 18px 45px rgba(30, 83, 34, .18);
+      backdrop-filter: blur(10px);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) rotate(-1deg);
+      box-shadow: 0 24px 60px rgba(30, 83, 34, .24);
+    }
+
+    .clover-frame {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #236b32;
+      padding: 8px;
+      clip-path: path("M 50 95 C 45 78 25 80 18 63 C 10 43 28 30 45 42 C 40 20 60 8 73 24 C 85 37 75 54 62 58 C 80 60 91 78 76 91 C 63 102 54 98 50 95 Z");
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .clover-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 10px;
+      clip-path: path("M 50 95 C 45 78 25 80 18 63 C 10 43 28 30 45 42 C 40 20 60 8 73 24 C 85 37 75 54 62 58 C 80 60 91 78 76 91 C 63 102 54 98 50 95 Z");
+      filter: saturate(1.05) contrast(1.03);
+    }
+
+    .caption {
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    .caption h2 {
+      font-size: 23px;
+      color: #173f23;
+      margin-bottom: 6px;
+    }
+
+    .caption p {
+      color: #4b674f;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .banner {
+      margin: 44px auto 0;
+      max-width: 920px;
+      background: linear-gradient(90deg, #0f4f24, #238047, #0f4f24);
+      color: white;
+      border-radius: 30px;
+      padding: 24px 28px;
+      text-align: center;
+      box-shadow: 0 18px 40px rgba(18, 69, 31, .24);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner::before {
+      content: "☘ ☘ ☘ ☘ ☘";
+      position: absolute;
+      inset: 8px auto auto 50%;
+      transform: translateX(-50%);
+      opacity: .18;
+      font-size: 46px;
+      white-space: nowrap;
+    }
+
+    .banner h3 {
+      font-size: 28px;
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .banner p {
+      font-size: 16px;
+      opacity: .9;
+      position: relative;
+    }
+
+    @media (max-width: 860px) {
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <span class="eyebrow">Ireland Travel Gallery</span>
+    <h1>Shamrocks & Castles</h1>
+    <p class="subtitle">
+      A dreamy Irish-inspired photo layout featuring emerald landscapes, historic castles,
+      and clover-shaped image frames.
+    </p>
+  </section>
+
+  <main class="gallery-wrap">
+    <section class="gallery">
+      <article class="card">
+        <div class="clover-frame">
+          <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=900&q=80" alt="Majestic Irish castle" />
+        </div>
+        <div class="caption">
+          <h2>Royal Strongholds</h2>
+          <p>Grand castles standing proudly across Ireland’s green countryside.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="clover-frame">
+          <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=900&q=80" alt="Historic castle in Ireland" />
+        </div>
+        <div class="caption">
+          <h2>Medieval Beauty</h2>
+          <p>Historic fortresses wrapped in mist, stone, and Irish legend.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="clover-frame">
+          <img src="https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?auto=format&fit=crop&w=900&q=80" alt="Irish castle surrounded by greenery" />
+        </div>
+        <div class="caption">
+          <h2>Ancient Castles</h2>
+          <p>Stone towers and misty walls rooted in centuries of Irish history.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="clover-frame">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80" alt="Green countryside landscape" />
+        </div>
+        <div class="caption">
+          <h2>Emerald Fields</h2>
+          <p>Rolling green hills inspired by Ireland’s countryside and folklore.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="clover-frame">
+          <img src="https://images.unsplash.com/photo-1599689018034-48e2ead82951?auto=format&fit=crop&w=900&q=80" alt="Castle ruins in Ireland" />
+        </div>
+        <div class="caption">
+          <h2>Castle Ruins</h2>
+          <p>Romantic ruins framed like lucky clovers across the Irish landscape.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="clover-frame">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Cozy countryside road" />
+        </div>
+        <div class="caption">
+          <h2>Country Roads</h2>
+          <p>Quiet paths, soft light, and the charm of a storybook journey.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="clover-frame">
+          <img src="https://images.unsplash.com/photo-1564959130747-897fb406b9af?auto=format&fit=crop&w=900&q=80" alt="Irish coast and cliffs" />
+        </div>
+        <div class="caption">
+          <h2>Wild Coast</h2>
+          <p>Coastal views that pair perfectly with legends, music, and sea air.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="clover-frame">
+          <img src="https://images.unsplash.com/photo-1568322445389-f64ac2515020?auto=format&fit=crop&w=900&q=80" alt="Historic stone castle" />
+        </div>
+        <div class="caption">
+          <h2>Lucky Landmarks</h2>
+          <p>Iconic places arranged in a clover-shaped celebration of Ireland.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="banner">
+      <h3>May the road rise up to meet you.</h3>
+      <p>Explore Ireland through castles, greenery, and a little shamrock magic.</p>
+    </section>
+  </main>
+</body>
+</html>
